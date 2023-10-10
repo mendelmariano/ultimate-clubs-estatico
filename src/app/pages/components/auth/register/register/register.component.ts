@@ -30,6 +30,7 @@ export class RegisterComponent {
         ) {
       this.userForm = this.fb.group({
         name: ['', Validators.required],
+        whatsapp: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password1: ['', [Validators.required, Validators.minLength(6)]],
         password2: ['', Validators.required],
@@ -51,9 +52,9 @@ export class RegisterComponent {
 
     onSubmit() {
         if (this.userForm.valid) { // O formulário é válido, você pode continuar com o envio dos dados.
-          const { name, email, password1: password, password2, ...user } = this.userForm.value;
-          const profile_id = 0;
-          this.user = { name, email, password, profile_id };
+          const { name, email, whatsapp, password1: password, password2, ...user } = this.userForm.value;
+          const profile_id = 1;
+          this.user = { name, email, password, whatsapp, profile_id };
 
           this.authService.cadastrarUsuario(this.user).subscribe({
             next: (response: User) => {

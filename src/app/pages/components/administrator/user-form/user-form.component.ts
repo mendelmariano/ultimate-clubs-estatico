@@ -18,11 +18,11 @@ export class UserFormComponent implements OnInit {
     userForm: FormGroup;
     profile: any[] = [
         {
-            id: 0,
+            id: 1,
             name: "Registred"
         },
         {
-            id: 1,
+            id: 2,
             name: "Administator"
         },
 

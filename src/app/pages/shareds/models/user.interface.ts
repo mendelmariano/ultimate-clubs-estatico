@@ -16,9 +16,20 @@ export interface User {
     email: string;
     createdAt: string;
     updatedAt: string;
+    whatsapp?: string;
     profile: {
         name: string;
         id: number,
     },
     profile_id: number;
+}
+
+export interface UserUpdate {
+    id?: number;
+    name: string;
+    email: string;
+    whatsapp?: string;
+    password?: string;
+    confirmPassword?: string;
+    oldPassword?: string;
 }

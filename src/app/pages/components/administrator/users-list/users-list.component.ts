@@ -20,6 +20,10 @@ export class UsersListComponent implements OnInit {
     currentPage = 1; // Página atual
     pageSize = 10; // Tamanho da página
     filter: boolean = false;
+    deleteUserDialog: boolean = false;
+    userSelected: User;
+
+
     @ViewChild('filterElement') filterInput: ElementRef;
 
 
@@ -129,6 +133,39 @@ export class UsersListComponent implements OnInit {
                 this.messageService.add({ key: 'tst', severity: 'success', summary: 'Sucesso!', detail: 'Usuário salvo' });
             }
         });
+    }
+
+    deleteUser(user: User) {
+        this.deleteUserDialog = true;
+        this.userSelected = user;
+    }
+
+    confirmDelete(){
+
+        this.usersService.delete(this.userSelected.id).subscribe(
+            () => {
+                const index = this.usersList.users.findIndex(m => m.id === this.userSelected.id);
+                if (index !== -1) {
+                    this.usersList.users.splice(index, 1);
+                }
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Mode deleted',
+                    life: 3000
+                });
+
+                this.deleteUserDialog = false;
+            },
+            error => {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'Error deleting mode',
+                    life: 3000
+                });
+            }
+        );
     }
 
 }

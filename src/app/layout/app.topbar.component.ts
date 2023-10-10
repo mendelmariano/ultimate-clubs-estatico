@@ -18,7 +18,18 @@ export class AppTopBarComponent {
 
     @ViewChild('topbarmenu') menu!: ElementRef;
 
-    constructor(public layoutService: LayoutService, private authService: AuthServiceService, private router: Router) { }
+    settingsItems: MenuItem[] = [];
+
+    constructor(public layoutService: LayoutService, private authService: AuthServiceService, private router: Router) {
+        this.settingsItems = [
+
+            {
+                label: 'Atualizar dados', icon: 'pi pi-fw pi-refresh', routerLink: ['/users-settings/edit'],
+            },
+
+        ];
+
+    }
 
     logout() {
         this.authService.logout();

@@ -46,7 +46,6 @@ export class LoginComponent {
          login() {
             if (this.formulario.valid) {
               // Lógica para lidar com o envio do formulário
-              console.log(this.formulario.value);
               this.authService.login(this.formulario.value).subscribe(
                 {
                     next: (response: UserResponseLogin) => {
